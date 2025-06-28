@@ -2,7 +2,17 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/icon', '@nuxt/image'],
+  modules: [
+    '@nuxt/icon',
+    '@nuxt/image',
+    ['@nuxtjs/google-fonts', {
+        families: {
+          'Golos Text': {
+            wght:'400..900',
+          },
+        }
+    }],,
+  ],
   
   typescript: {
     typeCheck: true

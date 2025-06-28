@@ -6,7 +6,9 @@
 
   <PriceCalculator />
 
+  <!--
   <ContactDialog />
+  -->
 
 </template>
 

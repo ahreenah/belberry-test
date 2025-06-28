@@ -1,38 +1,63 @@
 <template>
-  <header aria-label="Навигация">
-    <ul role="presentation">
+  <header aria-label="Навигация" class="header">
+    <div class="logo-wrapper">
+      <NuxtImg src="/logo.png" class="logo"/>
+    </div>
+    <ul role="presentation" class="links">
       <li>
-        <NuxtLink href="/">
-          Проекты
-        </NuxtLink>
+        <HeaderLink href='/' title="Проекты" />
       </li>
       <li>
-        <NuxtLink href="/">
-          Услуги
-        </NuxtLink>
+        <HeaderLink href='/' title="Услуги" />
       </li>
       <li>
-        <NuxtLink href="/">
-          Мы
-        </NuxtLink>
+        <HeaderLink href='/' title="Мы" />
+      </li>
+      <li class="blog">
+        <HeaderLink href='/' title="Блог"/>
       </li>
       <li>
-        <NuxtLink href="/">
-          Блог
-        </NuxtLink>
+        <HeaderLink href='/' title="Контакты" />
       </li>
       <li>
-        <NuxtLink href="/">
-          Проекты
-        </NuxtLink>
-      </li>
-      <li>
-        <NuxtLink href="/">
-          Связаться с нами
-        </NuxtLink>
+        <HeaderLink href='/' title="Cвязаться с нами" variant="dark" />
       </li>
     </ul>
-    <NuxtImg src="/logo.png"/>
   </header>
 </template>
 
+<style scoped lang="css">
+.header{
+  display:grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  height: 67px;
+  background: white;
+}
+
+.logo-wrapper, .links{
+  grid-row: 1;
+  grid-column:1;
+}
+
+.links{
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.logo-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blog{
+  margin-left: auto;
+}
+</style>
