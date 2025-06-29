@@ -7,57 +7,21 @@
     <form class="price-form">
       <div class="fields">
         <div class="input-wrapper">
-          <label for="site-type">
-            Тип сайта
-          </label>
-          <select placeholder="Тип сайта" id="site-type">
-            <option value="landing">Лендинг</option>
-            <option value="store">Интернет-магазин</option>
-          </select>
+          <UISelect label="Тип сайта" :options="siteTypeOptions" v-model="siteType" />
         </div>
         <div class="input-wrapper">
-          <label for="cms-select">
-            Тип CMS
-          </label>
-          <select placeholder="Тип CMS" id="cms-select">
-            <option value="bitrix">Bitrix</option>
-            <option value="wordpress">WordPress</option>
-          </select>
+          <UISelect label="Тип CMS" :options="cmsTypeOptions" v-model="cmsType" />
         </div>
         <div class="input-wrapper">
-          <label for="site-topic">
-            Тeматика сайта
-          </label>
-          <select placeholder="Тeматика сайта" id='dite-topic'>
-            <option value="it">IT</option>
-            <option value="medicine">Медицина</option>
-            <option value="education">Образование</option>
-          </select>
+          <UISelect label="Тeматика сайта" :options="topicOptions" v-model="topic" />
         </div>
         <div class="input-wrapper">
-          <label for="site-design">
-            Дизайн сайта
-          </label>
-          <select placeholder="Дизайн сайта" id="site-design">
-            <option value="basic">Базовый</option>
-            <option value="custom">Авторский</option>
-          </select>
+          <UISelect label="Дизайн сайта" :options="designTypeOptions" v-model="designType" />
         </div>
         <div class="input-wrapper">
-          <label for="additional-services">
-            Дополнительные услуги
-          </label>
-          <select placeholder="Дополнительные услуги" id="additional-services">
-            <option selected>Нет</option>
-            <option value="deploy">Разворачиваниие на домене</option>
-            <option value="seo">SEO</option>
-            <option value="advertisement">Настройки рекламы</option>
-          </select>
+          <UISelect label="Дополнительные услуги" :options="additionalOptions" v-model="additionalOption" />
         </div>
         <div class="input-wrapper comment">
-          <label for="project-comment">
-            Комментарий к проекту
-          </label>
           <textarea placeholder="Комментарий к проекту" id="project-comment" />
         </div>
         <div class="pricing">
@@ -195,3 +159,45 @@
 }
 
 </style>
+
+<script setup lang="ts">
+import type {Nullable} from '~/types/Nullable';
+import type {SelectOption} from '~/types/SelectOption';
+
+
+const siteTypeOptions = [
+  { name: 'Сайт-визитка', description: 'Сайт с информацией о вашем бизнесе или проекте', price: 40000, id:1 },
+  { name: 'Интернет-магазин', description: 'Сайт для продажи товаров', price: 200000, id:2 },
+  { name: 'Админ-панель', description: 'Панель настроек', price: 100000, id: 3 },
+]
+
+const cmsTypeOptions = [
+  {name: 'Bitrix', description: 'Российкая CMS с удобной интеграцией с 1С', price: 50000, id: 1},
+  {name: 'WordPress', description: 'Популярная CMS с большим коммьюнити', price: 30000, id: 2}
+]
+
+const topicOptions = [ 
+  {name: 'IT', description: 'Техноблоги, форумы, новости из мира IT', price: 30000, id: 1},
+  {name: 'Медицина', description: 'Медицинские сайты, сайты больниц, системы учета пациентов', price: 50000, id: 2 },
+  {name: 'Образование', description: 'Образовательные порталы, онлайн-школы, сайты с учебными материалами', price: 70000, id: 3},
+]
+
+const designTypeOptions = [
+  {name: 'Базовый', description: 'Сделаем стандартный сайт в соответствии с современными трендами', price: 0, id: 1},
+  {name: 'Авторский', description: 'Разработаем уникальный дизайн под Вас и Ваших клиентов', price: 100000, id: 2}
+]
+
+const additionalOptions = [
+  {name: 'Нет', description: 'Мы сделаем сайт, остальное вы сделаете сами', price: 0, id: 1},
+  {name: 'Разворачиваниие на домене', description: 'Всё запустим, подключим домен, сдадим Вам запущенный сайт', price: 50000, id: 2 },
+  {name: 'SEO', description: 'Настроим интеграцию с поисковыми сервисами', price: 70000, id: 3},
+  {name: 'Настройки рекламы', description:'Найдем способы привлечь клиентов, запустим рекламу Вашего сайта', price:30000, id: 4}
+]
+
+const siteType = ref<Nullable<SelectOption>>(null)
+const cmsType = ref<Nullable<SelectOption>>(null)
+const topic = ref<Nullable<SelectOption>>(null)
+const designType = ref<Nullable<SelectOption>>(null)
+const additionalOption = ref<Nullable<SelectOption>>(null)
+
+</script>

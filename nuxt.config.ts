@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/icon',
     '@nuxt/image',
+    'nuxt-headlessui',
     ['@nuxtjs/google-fonts', {
         families: {
           'Golos Text': {
