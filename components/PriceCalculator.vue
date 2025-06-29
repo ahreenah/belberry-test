@@ -1,9 +1,9 @@
 <template>
-
   <section aria-label="Посчитайте стоимость вашего сайта" class="calculator">
     <h2 class="calculator-title">
       Посчитайте стоимость вашего сайта:
     </h2>
+
     <form class="price-form">
       <div class="fields">
         <UISelect label="Тип сайта" :options="siteTypeOptions" v-model="siteType" />
@@ -19,16 +19,13 @@
           <span class="price">0 ₽</span>
         </div>
       </div>
-      <UIButton type="submit">Связаться с нами</UIButton>
-      <div class="accept-policy">
-        <input type="checkbox" id="accept-policy">
-        <label for="accept-policy">
-          Нажимая кнопку, я соглашаюсь с <NuxtLink href='/' class="accept-policy-link">политикой конфиденциальности</NuxtLink> и даю разрешение на обработку моих персональных данных.
-        </label>
-      </div>
-    </form>
-    
 
+      <UIButton type="submit">Связаться с нами</UIButton>
+    
+      <UILabeledCheckbox class="accept-policy">
+          Нажимая кнопку, я соглашаюсь с <NuxtLink href='/' class="accept-policy-link">политикой конфиденциальности</NuxtLink> и даю разрешение на обработку моих персональных данных.
+      </UILabeledCheckbox>
+    </form>
   </section>
 </template>
 
@@ -109,12 +106,6 @@
 
 .accept-policy{
   margin-top: 32px;
-  height: 24px;
-  display: flex;
-  align-items: flex-start;
-  gap:8px;
-  font-weight: 500;
-  color: #8B8B8B;
 }
 
 .accept-policy-link{
@@ -132,6 +123,7 @@
 </style>
 
 <script setup lang="ts">
+import {UILabeledCheckbox} from '#components';
 import type {Nullable} from '~/types/Nullable';
 import type {SelectOption} from '~/types/SelectOption';
 
