@@ -88,10 +88,9 @@ const selectedOption = defineModel<Nullable<SelectOption>>();
   border-radius: 24px;
   background: white;
   padding: 12px;
-  color: black;
+  color: var(--color-black);
   box-sizing: border-box;
   z-index: 1;
-  
 }
 
 .listbox-wrapper{
@@ -100,7 +99,7 @@ const selectedOption = defineModel<Nullable<SelectOption>>();
 
 .listbox-label{
   top:0;
-  color: black;
+  color: var(--color-black);
   font-size: 12px;
   line-height: 19px;
   &.centered{

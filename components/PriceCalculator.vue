@@ -6,23 +6,13 @@
     </h2>
     <form class="price-form">
       <div class="fields">
-        <div class="input-wrapper">
-          <UISelect label="Тип сайта" :options="siteTypeOptions" v-model="siteType" />
-        </div>
-        <div class="input-wrapper">
-          <UISelect label="Тип CMS" :options="cmsTypeOptions" v-model="cmsType" />
-        </div>
-        <div class="input-wrapper">
-          <UISelect label="Тeматика сайта" :options="topicOptions" v-model="topic" />
-        </div>
-        <div class="input-wrapper">
-          <UISelect label="Дизайн сайта" :options="designTypeOptions" v-model="designType" />
-        </div>
-        <div class="input-wrapper">
-          <UISelect label="Дополнительные услуги" :options="additionalOptions" v-model="additionalOption" />
-        </div>
+        <UISelect label="Тип сайта" :options="siteTypeOptions" v-model="siteType" />
+        <UISelect label="Тип CMS" :options="cmsTypeOptions" v-model="cmsType" />
+        <UISelect label="Тeматика сайта" :options="topicOptions" v-model="topic" />
+        <UISelect label="Дизайн сайта" :options="designTypeOptions" v-model="designType" />
+        <UISelect label="Дополнительные услуги" :options="additionalOptions" v-model="additionalOption" />
         <div class="input-wrapper comment">
-          <textarea placeholder="Комментарий к проекту" id="project-comment" />
+          <UITextarea label="Комментарий к проекту" />
         </div>
         <div class="pricing">
           <span class="price-label">Стоимость проекта</span>
@@ -86,25 +76,6 @@
     position: relative;
   }
 
-.input-wrapper{
-  position: relative;
-  & label{
-    position: absolute;
-    top: 10px;
-    left: 10px;
-  }
-  & select, textarea{
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    width: 100%;
-    height: 64px;
-  }
-  & textarea{
-    height: 232px;
-    box-sizing: border-box;
-  }
-}
 
 .comment{
   grid-row: 2 / 4;
