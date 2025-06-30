@@ -3,7 +3,9 @@
     <h2 class="calculator-title">
       Посчитайте стоимость вашего сайта:
     </h2>
-
+    <h2 class="calculator-mobile-title">
+      Наши услуги
+    </h2>
     <form class="price-form">
       <div class="fields">
         <UISelect label="Тип сайта" :options="siteTypeOptions" v-model="siteType" />
@@ -15,7 +17,7 @@
           <UITextarea label="Комментарий к проекту" />
         </div>
         <div class="pricing">
-          <span class="price-label">Стоимость проекта</span>
+          <span class="price-label">Стоимость проекта:</span>
           <span class="price">0 ₽</span>
         </div>
       </div>
@@ -38,11 +40,14 @@
   width: 100%;
   max-width: var(--content-width);
   background: #313131;
-  padding: 60px;
+  padding: 32px 16px;
   border-radius: 20px;
   color: var(--color-white);
   box-sizing: border-box;
   overflow: hidden;
+  @media (width >= 1320px){
+    padding: 60px;
+  }
 }
 
 .calculator:before{
@@ -59,21 +64,31 @@
 }
 
 .fields{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 22px;
+  @media (width >= 1320px){
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
 }
 
 .calculator-title{
   font-size: 44px;
   line-height: 120%;
   margin-bottom: 50px;
+  display: none;
+  
+  @media (width >= 1320px){
+    display: block;
+  }
 }
 
-  .price-form{
-    position: relative;
-  }
+.price-form{
+  position: relative;
+}
 
 
 .comment{
@@ -86,7 +101,14 @@
   margin-top: auto;
   display: flex;
   align-items: flex-start;
-  gap: 15px;
+  gap: 8px;
+  flex-direction: column;
+  margin-top: 24px;
+  @media (width >= 1320px){
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 0;
+  }
 }
 
 .price{
@@ -120,6 +142,17 @@
   width: 20px;
   height: 20px;
   
+}
+
+.calculator-mobile-title{
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-bottom: 20px;
+  @media (width >= 1320px){
+    display: none;
+  }
 }
 
 </style>

@@ -41,11 +41,15 @@
 
 .dialog{
   background: white;
-  width: calc(100%);
+  width: calc(100% - 40px);
   max-width: 820px;
   border-radius: 20px;
-  padding: 60px;
+  padding: 24px 20px;
   position: relative;
+  box-sizing: border-box;
+  @media (width >= 1320px){
+    padding: 60px;
+  }
 }
 
 .backdrop{
@@ -61,8 +65,6 @@
 
 .close-button{
   position: absolute;
-  top: 24px;
-  right: 24px;
   width: 32px;
   height: 32px;
   border: none;
@@ -72,5 +74,14 @@
   align-items: center;
   background-color: transparent;
   outline:none;
+  top: -36px;
+  right: 0;
+  color: var(--color-white);
+
+  @media (width >= 1320px){
+    top: 24px;
+    right: 24px;
+    color: var(--color-black);
+  }
 }
 </style>

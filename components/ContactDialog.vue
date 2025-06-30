@@ -3,7 +3,7 @@
     <div class="contact-form-wrapper">
       <div class="contact-form-description">
         <h3 class="title">Осталось совсем немного</h3>
-        <p class="summary">Мы рассчитали стоимость вашего сайта, она составила {{formatPrice(price)}} рублей. Оставьте контакты, и наш менеджер свяжется с вами в ближайшее время.</p>
+        <p class="summary" v-if="price">Мы рассчитали стоимость вашего сайта, она составила {{formatPrice(price)}} рублей. Оставьте контакты, и наш менеджер свяжется с вами в ближайшее время.</p>
       </div>
       <form class="contact-form" @submit.prevent="closeDialog($event)">
         <div class="contact-form-fields">
@@ -27,7 +27,7 @@
   const emit = defineEmits(['close'])
   defineProps<{
     open: boolean;
-    price: number;
+    price?: number;
   }>();
 
   function closeDialog(event: Event){
@@ -56,30 +56,41 @@
 }
 
 .title{
-  font-family: Golos Text;
   font-weight: 600;
-  font-size: 44px;
-  line-height: 120%;
+  font-size: 28px;
+  line-height: 110.00000000000001%;
   letter-spacing: 0%;
   text-align: center;
   vertical-align: middle;
+
+  @media (width >= 1320px){
+    font-size: 44px;
+    line-height: 120%;
+  }
 }
 
 .summary{
   font-weight: 400;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 140%;
   letter-spacing: 0%;
   text-align: center;
   vertical-align: middle;
-  max-width: 604px;
-  margin: 0 auto;
+  
+  @media (width >= 1320px){
+    font-size: 18px;
+    max-width: 604px;
+    margin: 0 auto;
+  }
 }
 
 .fields{
   display: grid;
   gap: 20px;
+  grid-template-columns: 1fr;
+  @media (width >= 1320px){
   grid-template-columns: 1fr 1fr;
+  }
 }
 
 .accept-policy-link{

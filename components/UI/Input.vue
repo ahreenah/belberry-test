@@ -15,13 +15,18 @@
 
 <style scoped lang="css">
 .wrapper{
-  height: 64px;
-  border-radius: 20px;
+  height: 44px;
+  border-radius: 12px;
   background-color: #F5F7FA;
   position: relative;
   display: flex;
   box-sizing: border-box;
-  padding: 31px 16px 13px;
+  padding: 19px 16px 5px;
+  @media (width >= 1320px){
+    height: 64px;
+    padding: 31px 16px 13px;
+    border-radius: 20px;
+  }
 }
 
 .input{
@@ -37,7 +42,7 @@
 .label{
   position: absolute;
   line-height: 20px;
-  top: 22px;
+    top: 12px;
   left: 16px;
   font-weight: 500;
   font-size: 16px;
@@ -45,9 +50,15 @@
   letter-spacing: 0%;
   color: #AABACF;
   &:has(+:focus), &.moved-up{
-    top: 13px;
+    top: 5px;
     font-size: 14px;
     line-height: 16px;
+  }
+  @media (width >= 1320px){
+  top: 22px;
+    &:has(+:focus), &.moved-up{
+      top: 13px;
+    }
   }
 }
 </style>

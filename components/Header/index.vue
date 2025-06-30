@@ -1,8 +1,12 @@
 <template>
   <header aria-label="Навигация" class="header">
+    <button class="burger-menu-button">
+      <Icon name="belberry:burger" mode="svg" size="45px" />
+    </button>
     <div class="logo-wrapper">
       <NuxtImg src="/logo.png" class="logo"/>
     </div>
+    <HeaderLink href='/' title="Напишите нам" variant="dark" class="write-us" />
     <ul role="presentation" class="links">
       <li>
         <HeaderLink href='/' title="Проекты" :notifications="18"/>
@@ -28,20 +32,28 @@
 
 <style scoped lang="css">
 .header{
-  display:grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  height: 67px;
+  display: flex;
+  height: 85px;
+  padding-left: 20px;
+  padding-right: 20px;
   background: white;
+  align-items: center;
+  @media (min-width: 1320px){
+    height: 67px;
+    display:grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+  }
 }
 
 .logo-wrapper, .links{
   grid-row: 1;
   grid-column:1;
+  flex:1;
 }
 
 .links{
-  display: flex;
+  display: none;
   list-style: none;
   gap: 24px;
   align-items: center;
@@ -49,6 +61,24 @@
   width: 100%;
   max-width: var(--content-width);
   margin: 0 auto;
+  @media (min-width: 1320px){
+    display: flex;
+  }
+}
+
+.burger-menu-button{
+  display: flex;
+  width: 48px;
+  height: 48px;
+}
+
+.burger-menu-button, .write-us{
+  display: flex;
+  border: none;
+  background-color: transparent;
+  @media (min-width: 1320px){
+    display: none;
+  }
 }
 
 .logo-wrapper{

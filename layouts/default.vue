@@ -15,10 +15,15 @@
   min-height: 100vh;
 }
 .page-content{
-  padding: 40px 0 107px;
+  padding: 35px 20px 50px;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
-  gap: 40px;
+  gap: 60px;
+
+  @media (width >= 1320px){
+    padding: 40px 0 107px;
+    gap: 80px;
+  }
 }
 </style>

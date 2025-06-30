@@ -3,48 +3,60 @@
     <h2 class="title">
       Наши услуги
     </h2>
-    <ClientOnly>
-      <swiper-container 
-        ref="containerRef" 
-        :slides-per-view="3" 
-        :space-between="20"
-        @swiper="console.log($event)"
-        @slide-change="console.log($event)"
-      >
-        <swiper-slide
-          v-for="(service, idx) in services"
-          :key="idx"
+    <ul class="service-list mobile-only ssr-service-list">
+      <li v-for="service in services" :key="service.title" class="service-card ssr-service-card">
+        <h3 class="service-title">
+          {{service.title}}
+        </h3>
+        <span class="service-description">
+          {{service.description}}
+        </span>
+      </li>
+    </ul>
+    <div class="swiper-and-controls">
+      <ClientOnly>
+        <swiper-container 
+          ref="containerRef" 
+          :slides-per-view="3" 
+          :space-between="20"
+          @swiper="console.log($event)"
+          @slide-change="console.log($event)"
         >
-          <section class="service-card">
-            <h3 class="service-title">
-              {{service.title}}
-            </h3>
-            <span class="service-description">
-              {{service.description}}
-            </span>
-          </section>
-        </swiper-slide>
-      </swiper-container>
-      <template #fallback>
-        <ul class="service-list ssr-service-list">
-          <li v-for="service in services" :key="service.title" class="service-card ssr-service-card">
-            <h3 class="service-title">
-              {{service.title}}
-            </h3>
-            <span class="service-description">
-              {{service.description}}
-            </span>
-          </li>
-        </ul>
-      </template>
-    </ClientOnly>
-    <div class="swiper-controls">
-      <button @click="showPreviousSlide()" class="swiper-control-button" :disabled="isBeginning">
-        <Icon name="belberry:arrow-left" mode="svg" size="30px" />
-      </button>
-      <button @click="showNextSlide()" class="swiper-control-button" :disabled="isEnd">
-        <Icon name="belberry:arrow-right" mode="svg" size="30px" />
-      </button>
+          <swiper-slide
+            v-for="(service, idx) in services"
+            :key="idx"
+          >
+            <section class="service-card">
+              <h3 class="service-title">
+                {{service.title}}
+              </h3>
+              <span class="service-description">
+                {{service.description}}
+              </span>
+            </section>
+          </swiper-slide>
+        </swiper-container>
+        <template #fallback>
+          <ul class="service-list ssr-service-list">
+            <li v-for="service in services" :key="service.title" class="service-card ssr-service-card">
+              <h3 class="service-title">
+                {{service.title}}
+              </h3>
+              <span class="service-description">
+                {{service.description}}
+              </span>
+            </li>
+          </ul>
+        </template>
+      </ClientOnly>
+      <div class="swiper-controls">
+        <button @click="showPreviousSlide()" class="swiper-control-button" :disabled="isBeginning">
+          <Icon name="belberry:arrow-left" mode="svg" size="30px" />
+        </button>
+        <button @click="showNextSlide()" class="swiper-control-button" :disabled="isEnd">
+          <Icon name="belberry:arrow-right" mode="svg" size="30px" />
+        </button>
+      </div>
     </div>
   </section>
 
@@ -109,27 +121,47 @@
 
 <style scoped lang="css">
 .title{
-  font-weight: 600;
-  font-size: 64px;
-  line-height: 77px;
+  font-size: 36px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
   color: #4B4B4B;
+  
+  @media (width >= 1320px){
+    font-weight: 600;
+    font-size: 64px;
+    line-height: 77px;
+  }
 }
 
 .services{
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 40px;
+  gap: 24px;
+  @media (width >= 1320px){
+    gap: 40px;
+  }
 }
 
 .service-list{
   display: flex;
   flex-direction: column;
   gap: 20px;
-  @media (width >= 1000px){
+  @media (width >= 1320px){
     flex-direction: row;
     overflow: auto;
     gap: 20px;
+  }
+}
+@media (width >= 1320px){
+  .mobile-only{
+    display: none;
+  }
+}
+@media (width < 1320px){
+  .desktop-only{
+    display: none;
   }
 }
 
@@ -143,7 +175,7 @@
   justify-content: space-between;
   min-height: 134px;
   box-sizing: border-box;
-  @media (width >= 1000px){
+  @media (width >= 1320px){
     height: 400px;
     padding: 30px;
   }
@@ -158,7 +190,7 @@
   font-weight: 600;
   font-size: 22px;
   line-height: 26px;
-  @media (width >= 1000px){
+  @media (width >=  1320px){
     font-size: 44px;
     line-height: 53px;
   }
@@ -177,7 +209,9 @@
 }
 
 .ssr-service-card{
-  width: 413px;
+  @media (width >= 1320px){
+    width: 413px;
+  }
   flex-shrink: 0;
 }
 
@@ -204,6 +238,15 @@
   &:disabled{
     background: #FFFFFF80;
     color: #3131315D;
+  }
+}
+
+.swiper-and-controls{
+  display: none;
+  @media(width >= 1320px){
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
   }
 }
 </style>

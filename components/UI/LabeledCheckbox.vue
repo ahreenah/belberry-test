@@ -45,9 +45,13 @@ input[type="checkbox"]{
 }
 
 .label-text{
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 12px;
+  line-height: 16px;
   padding-top: 4px;
+  @media (width >= 1320px){
+    font-size: 16px;
+    line-height: 19px;
+  }
 }
 </style>
 

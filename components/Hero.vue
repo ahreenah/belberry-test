@@ -16,6 +16,15 @@
       <h3 class="title">
         Создание и продвижение сайтов
       </h3>
+      <NuxtLink href="/" class="all-projects-link">
+        <div class="all-projects-text">
+          Наши проекты
+        </div>
+        <div class="all-projects">
+          <Icon name="belberry:arrow-up-right" size="24px" class="all-projects-icon desktop-only" />
+          <Icon name="belberry:arrow-up-right" size="33.75px" class="all-projects-icon mobile-only" />
+        </div>
+      </NuxtLink>
       <section aria-label="Наши проекты" class="projects">
         <ul role="presentation" class="project-list">
           <li>
@@ -62,6 +71,9 @@
         <span class="support">
           техподдержка сайта на 30 дней — в подарок
         </span>
+        <span class="your-price">
+          Ваша цена
+        </span>
         <span class="price">
           320 000 ₽
         </span>
@@ -81,7 +93,7 @@
       </div>
     </section>
   </section>
-  <ContactDialog :open="isContactDialogShown" :price="320000" @close="closeContactDialog()"/>
+  <ContactDialog :open="isContactDialogShown" @close="closeContactDialog()"/>
 </template>
 
 <script setup lang="ts">
@@ -105,37 +117,67 @@ function showContactForm(event: Event){
   max-width: var(--content-width);
   margin: 0 auto;
   position: relative;
-  overflow: hidden;
+  flex-direction: column;
+  width: 100%;
+  @media (width >= 1320px){
+     overflow: hidden;
+    flex-direction: row;
+  }
 }
 
 .title{
-  font-size: 68px;
   font-weight: 500;
-  line-height: 82px;
-  margin-top: 16px;
+  font-size: 28px;
+  line-height: 120%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  margin-top: 20px;
+
+  @media (width >= 1320px){
+    font-size: 68px;
+    font-weight: 500;
+    line-height: 82px;
+    margin-top: 16px;
+  }
 }
 
 .subtitle{
-  font-size: 20px;
-  line-height: 24px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+  letter-spacing: 0%;
+
+  @media (width >= 1320px){
+    font-size: 20px;
+    line-height: 24px;
+  }
 }
 
 .site-development{
   background-image: linear-gradient(108.96deg, var(--color-primary-dark) -2.15%, var(--color-primary-light) 137.97%);
-  padding: 60px;
+  padding: 30px;
   color: var(--color-white);
   border-radius: 20px;
   flex:2;
+
+  @media (width >= 1320px){
+    padding: 60px;
+  }
 }
 
 .order-site-bg{
   flex:1;
-  height: 600px;
-  width: 413px;
-  background-image: linear-gradient(200.75deg, #0804A1B0 -57.41%, #9278FAB0 99.52%), url("/flowers-bg-flipped.png");
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 275px 100%, 216px calc(100% - 60px), 0 calc(100% - 60px));
+  background-image: linear-gradient(99.73deg, #0804A1B0 -18.29%, #9278FAB0 77.18%), url("/flowers-bg-flipped.png");
   background-position: -60px bottom;
   background-size: 1080px;
+  height: 250px;
+
+  @media (width >= 1320px){
+    background-image: linear-gradient(200.75deg, #0804A1B0 -57.41%, #9278FAB0 99.52%), url("/flowers-bg-flipped.png");
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 275px 100%, 216px calc(100% - 60px), 0 calc(100% - 60px));
+    height: 600px;
+    width: 413px;
+  }
 }
 
 .round {
@@ -145,6 +187,7 @@ function showContactForm(event: Event){
 }
 
 .projects{
+  display:none;
   /*background-color: var(--color-white);*/
   background-image: url(/projects-background.png);
   background-position: bottom;
@@ -153,11 +196,13 @@ function showContactForm(event: Event){
   height: 134px;
   border-radius: 10px;
   padding: 10px;
-  display: flex;
   gap: 19px;
   box-sizing: border-box;
   position: relative;
   margin-top: 60px;
+  @media (width >= 1320px){
+    display: flex;
+  }
 }
 
 .project-list{
@@ -182,22 +227,38 @@ function showContactForm(event: Event){
 }
 
 .all-projects{
-  position: absolute;
   top: 0;
   right: 0;
-  width: 32px;
-  height: 32px;
+  width: 45px;
+  height: 45px;
   border-radius: 32px;
   background-color: #ECF96E;
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (width >= 1320px){
+    position: absolute;
+    width: 32px;
+    height: 32px;
+  }
 }
 
 
 .all-projects-icon{
   margin-right: -4px;
   margin-bottom: -1px;
+  &.desktop-only{
+    display: none;
+    @media(width >= 1320px){
+      display: flex;
+    }
+  }
+  &.mobile-only{
+    display: flex;
+    @media(width >= 1320px){
+      display: none;
+    }
+  }
 }
 
 .order-site{
@@ -210,8 +271,12 @@ function showContactForm(event: Event){
   grid-row: 1 / 2;
   display: flex;
   flex-direction: column;
-  padding: 53px 8px 8px 5px;
+  padding: 30px;
   z-index: 1;
+
+  @media(width >= 1320px){
+    padding: 53px 8px 8px 5px;
+  }
 }
 
 .support{
@@ -223,17 +288,41 @@ function showContactForm(event: Event){
   text-align: right;
   align-self: flex-end;
   margin-right: 12px;
+  display: none;
+  @media(width >= 1320px){
+    display: block;
+  }
+}
+
+.your-price{
+  margin-top: auto;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+  letter-spacing: 0%;
+
+  color: var(--color-white);
+
+  @media(width >= 1320px){
+    display: none;
+  }
 }
 
 .price{
-  margin-top: auto;
+  font-size: 36px;
+  line-height: 120%;
   font-weight: 500;
-  font-size: 72px;
-  line-height: 72px;
   letter-spacing: 0%;
-  margin-bottom: 29px;
+  margin-bottom: 12px;
   color: var(--color-white);
-  text-align: center;
+
+  @media(width >= 1320px){
+    margin-top: auto;
+    font-size: 72px;
+    line-height: 72px;
+    text-align: center;
+    margin-bottom: 29px;
+  }
 }
 
 
@@ -246,6 +335,10 @@ function showContactForm(event: Event){
 .top-ten{
   flex-basis: 244px;
   font-size: 15px;
+  display: none;
+  @media(width >= 1320px){
+    display: block;
+  }
 }
 
 .order-now{
@@ -293,13 +386,42 @@ function showContactForm(event: Event){
 
 .flowers{
   position: absolute;
-  bottom: -50px;
-  right: -130px;
-  width: 780px;
-  transform: rotate(-13.8deg);
+  bottom: -20px;
+  right: -20px;
+  width: 400px;
+
+  @media(width >= 1320px){
+    right: -130px;
+    width: 780px;
+    transform: rotate(-13.8deg);
+  }
 }
 
 .order-text{
   z-index: 1;
+}
+
+.all-projects-link{
+  display: flex;
+  gap: 4px;
+  align-items: stretch;
+  height: 44px;
+  text-decoration: none;
+  margin-top: 40px;
+  @media(width >= 1320px){
+    display: none;
+  }
+}
+
+.all-projects-text{
+  line-height: 44px;
+  border-radius: 44px;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  color: #0D08A4;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  width: 213px;
 }
 </style>
