@@ -5,16 +5,16 @@
     </div>
     <ul role="presentation" class="links">
       <li>
-        <HeaderLink href='/' title="Проекты" />
+        <HeaderLink href='/' title="Проекты" :notifications="18"/>
       </li>
       <li>
-        <HeaderLink href='/' title="Услуги" />
+        <HeaderDropdown href='/' title="Услуги" :notifications="36" :items="serviceLinks"/>
       </li>
       <li>
-        <HeaderLink href='/' title="Мы" />
+        <HeaderDropdown href='/' title="Мы" :items="aboutUsLinks" />
       </li>
       <li class="blog">
-        <HeaderLink href='/' title="Блог"/>
+        <HeaderLink href='/' title="Блог" :notifications="31"/>
       </li>
       <li>
         <HeaderLink href='/' title="Контакты" />
@@ -61,3 +61,18 @@
   margin-left: auto;
 }
 </style>
+
+<script setup lang="ts">
+import {HeaderDropdown} from '#components';
+
+const serviceLinks = ref([
+  {label:'Разработка сайтов', href:'/'},
+  {label:'Продвижение сайтов', href:'/'},
+  {label:'Реклама', href:'/'},
+])
+
+const aboutUsLinks = ref([
+  {label:'Наши соцсети', href:'/'},
+  {label:'Наши проекты', href:'/'},
+])
+</script>

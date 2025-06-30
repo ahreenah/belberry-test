@@ -26,7 +26,7 @@ body{
   --color-white: #FFFFFF;
   --color-primary-dark: #0804A1;
   --color-primary-light: #9278FA;
-  --color-grey-100: #F8F8F8;
+  --color-grey-100: #F7F7F7;
   --color-grey-200: #E4E4E4;
   --color-grey-300: #DEDEDE;
   --color-grey-400: #CECECE;
