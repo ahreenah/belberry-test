@@ -69,15 +69,34 @@
           <span class='top-ten'>
             Топ-10 самых креативных разработчиков сайтов в России
           </span>
-          <button class="order-now">
-            <Icon name="belberry:arrow-right" size="24px" />
-            Заказать
+          <button class="order-now" @click="showContactForm">
+            <div class="icon-wrapper">
+              <Icon name="belberry:arrow-right" size="24px" />
+            </div>
+            <span class="order-text">
+              Заказать
+            </span>
           </button>
         </div>
       </div>
     </section>
   </section>
+  <ContactDialog :open="isContactDialogShown" :price="320000" @close="closeContactDialog()"/>
 </template>
+
+<script setup lang="ts">
+const isContactDialogShown = ref(false);
+
+function closeContactDialog(){
+  console.log('close in calculator')
+  isContactDialogShown.value = false;
+}
+
+function showContactForm(event: Event){
+  event.preventDefault()
+  isContactDialogShown.value = true;
+}
+</script>
 
 <style scoped lang="css">
 .hero{
@@ -238,13 +257,49 @@
   gap: 6px;
   display: flex;
   align-items: center;
+  position: relative;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  cursor: pointer;
+
+  &:before{
+    content:'';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    left: 9px;
+    border-radius: 15px;
+    background-color: #ECF96E;
+  }
+  &:hover:before{
+    width: 125px;
+    height: 42px;
+    top: 4px;
+    left: 6px;
+  }
+}
+
+.icon-wrapper{
+  flex-basis: 30px;
+  flex-shrink: 0;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flowers{
-position: absolute;
-    bottom: -50px;
-    right: -130px;
-    width: 780px;
-    transform: rotate(-13.8deg);
+  position: absolute;
+  bottom: -50px;
+  right: -130px;
+  width: 780px;
+  transform: rotate(-13.8deg);
+}
+
+.order-text{
+  z-index: 1;
 }
 </style>
