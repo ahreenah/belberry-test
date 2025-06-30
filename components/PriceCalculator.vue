@@ -20,13 +20,15 @@
         </div>
       </div>
 
-      <UIButton type="submit">Связаться с нами</UIButton>
+      <UIButton type="submit" @click="showContactForm($event)">Связаться с нами</UIButton>
     
       <UILabeledCheckbox class="accept-policy">
           Нажимая кнопку, я соглашаюсь с <NuxtLink href='/' class="accept-policy-link">политикой конфиденциальности</NuxtLink> и даю разрешение на обработку моих персональных данных.
       </UILabeledCheckbox>
     </form>
   </section>
+
+  <ContactDialog :open="isContactDialogShown" :price="320000" @close="closeContactDialog()"/>
 </template>
 
 
@@ -162,5 +164,17 @@ const cmsType = ref<Nullable<SelectOption>>(null)
 const topic = ref<Nullable<SelectOption>>(null)
 const designType = ref<Nullable<SelectOption>>(null)
 const additionalOption = ref<Nullable<SelectOption>>(null)
+
+const isContactDialogShown = ref(false);
+
+function closeContactDialog(){
+  console.log('close in calculator')
+  isContactDialogShown.value = false;
+}
+
+function showContactForm(event: Event){
+  event.preventDefault()
+  isContactDialogShown.value = true;
+}
 
 </script>

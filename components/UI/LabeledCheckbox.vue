@@ -15,7 +15,6 @@
 
 <style scoped lang="css">
 .checkbox-wrapper{
-  height: 24px;
   display: flex;
   align-items: flex-end;
   gap:8px;
@@ -26,7 +25,7 @@
 .label{
   display: flex;
   gap: 8px;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 input[type="checkbox"]{
@@ -48,7 +47,8 @@ input[type="checkbox"]{
 .label-text{
   font-size: 16px;
   line-height: 19px;
-  height: 19px;
+  padding-top: 4px;
+  max-width: 604px;
 }
 </style>
 
