@@ -210,6 +210,9 @@ function showContactForm(event: Event){
   flex-direction: row;
   gap: 12px;
   list-style: none;
+  &:has(img:hover) img:not(:hover){
+    filter: grayscale(1);
+  }
 }
 
 
@@ -218,6 +221,14 @@ function showContactForm(event: Event){
   height: 112px;
   display: flex;
   border-radius: 8px;
+  overflow: hidden;
+  transition:.1s;
+  & img{
+    transition:.1s;
+  }
+  &:hover{
+    transform: scale(1.1);
+  }
 }
 
 .our-projects{
@@ -236,6 +247,10 @@ function showContactForm(event: Event){
   display: flex;
   align-items: center;
   justify-content: center;
+  transition:.1s;
+  &:hover{
+    transform: scale(1.1);
+  }
   @media (width >= 1320px){
     position: absolute;
     width: 32px;
@@ -358,6 +373,7 @@ function showContactForm(event: Event){
   cursor: pointer;
 
   &:before{
+    transition: .1s;
     content:'';
     position: absolute;
     width: 30px;
@@ -389,6 +405,7 @@ function showContactForm(event: Event){
   bottom: 0px;
   right: -20px;
   width: 350px;
+  pointer-events: none;
 
   @media(width >= 1320px){
     right: -130px;

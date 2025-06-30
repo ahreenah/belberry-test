@@ -13,11 +13,6 @@
             <Icon name="belberry:chevron-down" mode="svg" class="listbox-icon" size="24px" :class="{open}" />
           </HeadlessListboxButton>
 
-          <transition
-            leave-active-class="transition duration-100 ease-in"
-            leave-from-class="opacity-100"
-            leave-to-class="opacity-0"
-          >
             <HeadlessListboxOptions
               class="listbox-options"
             >
@@ -38,7 +33,6 @@
                 </li>
               </HeadlessListboxOption>
             </HeadlessListboxOptions>
-          </transition>
         </div>
       </HeadlessListbox>
     </div>
@@ -91,6 +85,7 @@ const selectedOption = defineModel<Nullable<SelectOption>>();
   color: var(--color-black);
   box-sizing: border-box;
   z-index: 1;
+  box-shadow: var(--color-grey-900) 0px 0px 6px 0px;
 }
 
 .listbox-wrapper{

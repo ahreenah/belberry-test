@@ -6,7 +6,7 @@
         {{notifications}}
       </span>
       <Icon name="belberry:chevron-down" mode="svg" size="25px" :class="{open}" class="menu-icon"/> 
-    </HeadlessMenuButton>
+    </HeadlessMenuButton>   
     <HeadlessMenuItems class="items">
       <HeadlessMenuItem v-for="item in items">
         <NuxtLink :href="item.href" class="menu-item-link">
@@ -98,5 +98,13 @@ import type MenuItem from '~/types/MenuItem';
 
 .menu-icon.open{
   transform: scaleY(-1);
+}
+
+.menu-shown{
+  opacity:1;
+}
+
+.menu-hidden{
+  opacity:0;
 }
 </style>
