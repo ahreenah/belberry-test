@@ -48,7 +48,6 @@ input[type="checkbox"]{
   font-size: 16px;
   line-height: 19px;
   padding-top: 4px;
-  max-width: 604px;
 }
 </style>
 

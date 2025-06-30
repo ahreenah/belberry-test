@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     'nuxt-headlessui',
+    'nuxt-swiper',
     ['@nuxtjs/google-fonts', {
         families: {
           'Golos Text': {

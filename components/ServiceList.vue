@@ -3,17 +3,51 @@
     <h2 class="title">
       Наши услуги
     </h2>
-    <ul class="service-list">
-      <li v-for="service in services" :key="service.title" class="service-card">
-        <h3 class="service-title">
-          {{service.title}}
-        </h3>
-        <span class="service-description">
-          {{service.description}}
-        </span>
-      </li>
-    </ul>
+    <ClientOnly>
+      <swiper-container 
+        ref="containerRef" 
+        :slides-per-view="3" 
+        :space-between="20"
+        @swiper="console.log($event)"
+        @slide-change="console.log($event)"
+      >
+        <swiper-slide
+          v-for="(service, idx) in services"
+          :key="idx"
+        >
+          <section class="service-card">
+            <h3 class="service-title">
+              {{service.title}}
+            </h3>
+            <span class="service-description">
+              {{service.description}}
+            </span>
+          </section>
+        </swiper-slide>
+      </swiper-container>
+      <template #fallback>
+        <ul class="service-list ssr-service-list">
+          <li v-for="service in services" :key="service.title" class="service-card ssr-service-card">
+            <h3 class="service-title">
+              {{service.title}}
+            </h3>
+            <span class="service-description">
+              {{service.description}}
+            </span>
+          </li>
+        </ul>
+      </template>
+    </ClientOnly>
+    <div class="swiper-controls">
+      <button @click="showPreviousSlide()" class="swiper-control-button" :disabled="isBeginning">
+        <Icon name="belberry:arrow-left" mode="svg" size="30px" />
+      </button>
+      <button @click="showNextSlide()" class="swiper-control-button" :disabled="isEnd">
+        <Icon name="belberry:arrow-right" mode="svg" size="30px" />
+      </button>
+    </div>
   </section>
+
 </template>
 
 <script setup lang="ts">
@@ -47,6 +81,30 @@
       description: "Удобные интерфейсы с фокусом на мобильную версию",
     },
   ])
+
+  const containerRef = ref(null)
+
+  const swiper = useSwiper(containerRef)
+
+  function showNextSlide(){
+    swiper.next()
+  }
+
+  function showPreviousSlide(){
+    swiper.prev()
+  }
+
+  const isBeginning = ref(true);
+  const isEnd = ref(false)
+
+  watch([containerRef], ()=>{
+  //@ts-ignore
+    containerRef.value.addEventListener('swiperslidechange', (e)=>{
+      console.log('slide change',e.detail[0].isBeginning)
+      isBeginning.value = e.detail[0].isBeginning
+      isEnd.value = e.detail[0].isEnd
+    })
+  })
 </script>
 
 <style scoped lang="css">
@@ -67,7 +125,7 @@
 .service-list{
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 20px;
   @media (width >= 1000px){
     flex-direction: row;
     overflow: auto;
@@ -86,7 +144,6 @@
   min-height: 134px;
   box-sizing: border-box;
   @media (width >= 1000px){
-    width: 413px;
     height: 400px;
     padding: 30px;
   }
@@ -117,5 +174,36 @@
 .services{
   max-width: var(--content-width);
   margin: 0 auto;
+}
+
+.ssr-service-card{
+  width: 413px;
+  flex-shrink: 0;
+}
+
+.ssr-service-list::-webkit-scrollbar{
+  display: none;
+}
+
+.swiper-controls{
+  display: flex;
+  gap: 20px;
+}
+
+.swiper-control-button{
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: var(--color-white);
+  border-radius: 10px;
+  color: var(--color-black);
+  cursor: pointer;
+  &:disabled{
+    background: #FFFFFF80;
+    color: #3131315D;
+  }
 }
 </style>
