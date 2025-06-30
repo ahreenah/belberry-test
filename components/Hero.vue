@@ -386,12 +386,13 @@ function showContactForm(event: Event){
 
 .flowers{
   position: absolute;
-  bottom: -20px;
+  bottom: 0px;
   right: -20px;
-  width: 400px;
+  width: 350px;
 
   @media(width >= 1320px){
     right: -130px;
+    bottom: -50px;
     width: 780px;
     transform: rotate(-13.8deg);
   }

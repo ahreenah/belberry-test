@@ -18,7 +18,7 @@
         </div>
         <div class="pricing">
           <span class="price-label">Стоимость проекта:</span>
-          <span class="price">0 ₽</span>
+          <span class="price">{{formatPrice(price)}}</span>
         </div>
       </div>
 
@@ -30,7 +30,7 @@
     </form>
   </section>
 
-  <ContactDialog :open="isContactDialogShown" :price="320000" @close="closeContactDialog()"/>
+  <ContactDialog :open="isContactDialogShown" :price="price" @close="closeContactDialog()"/>
 </template>
 
 
@@ -165,31 +165,31 @@ import type {SelectOption} from '~/types/SelectOption';
 
 const siteTypeOptions = [
   { name: 'Сайт-визитка', description: 'Сайт с информацией о вашем бизнесе или проекте', price: 40000, id:1 },
-  { name: 'Интернет-магазин', description: 'Сайт для продажи товаров', price: 200000, id:2 },
-  { name: 'Админ-панель', description: 'Панель настроек', price: 100000, id: 3 },
+  { name: 'Интернет-магазин', description: 'Сайт для продажи товаров', price: 20000, id:2 },
+  { name: 'Админ-панель', description: 'Панель настроек', price: 10000, id: 3 },
 ]
 
 const cmsTypeOptions = [
-  {name: 'Bitrix', description: 'Российкая CMS с удобной интеграцией с 1С', price: 50000, id: 1},
-  {name: 'WordPress', description: 'Популярная CMS с большим коммьюнити', price: 30000, id: 2}
+  {name: 'Bitrix', description: 'Российкая CMS с удобной интеграцией с 1С', price: 5000, id: 1},
+  {name: 'WordPress', description: 'Популярная CMS с большим коммьюнити', price: 3000, id: 2}
 ]
 
 const topicOptions = [ 
-  {name: 'IT', description: 'Техноблоги, форумы, новости из мира IT', price: 30000, id: 1},
-  {name: 'Медицина', description: 'Медицинские сайты, сайты больниц, системы учета пациентов', price: 50000, id: 2 },
-  {name: 'Образование', description: 'Образовательные порталы, онлайн-школы, сайты с учебными материалами', price: 70000, id: 3},
+  {name: 'IT', description: 'Техноблоги, форумы, новости из мира IT', price: 3000, id: 1},
+  {name: 'Медицина', description: 'Медицинские сайты, сайты больниц, системы учета пациентов', price: 5500, id: 2 },
+  {name: 'Образование', description: 'Образовательные порталы, онлайн-школы, сайты с учебными материалами', price: 7000, id: 3},
 ]
 
 const designTypeOptions = [
   {name: 'Базовый', description: 'Сделаем стандартный сайт в соответствии с современными трендами', price: 0, id: 1},
-  {name: 'Авторский', description: 'Разработаем уникальный дизайн под Вас и Ваших клиентов', price: 100000, id: 2}
+  {name: 'Авторский', description: 'Разработаем уникальный дизайн под Вас и Ваших клиентов', price: 10000, id: 2}
 ]
 
 const additionalOptions = [
   {name: 'Нет', description: 'Мы сделаем сайт, остальное вы сделаете сами', price: 0, id: 1},
-  {name: 'Разворачиваниие на домене', description: 'Всё запустим, подключим домен, сдадим Вам запущенный сайт', price: 50000, id: 2 },
-  {name: 'SEO', description: 'Настроим интеграцию с поисковыми сервисами', price: 70000, id: 3},
-  {name: 'Настройки рекламы', description:'Найдем способы привлечь клиентов, запустим рекламу Вашего сайта', price:30000, id: 4}
+  {name: 'Разворачиваниие на домене', description: 'Всё запустим, подключим домен, сдадим Вам запущенный сайт', price: 5000, id: 2 },
+  {name: 'SEO', description: 'Настроим интеграцию с поисковыми сервисами', price: 7000, id: 3},
+  {name: 'Настройки рекламы', description:'Найдем способы привлечь клиентов, запустим рекламу Вашего сайта', price:3200, id: 4}
 ]
 
 const siteType = ref<Nullable<SelectOption>>(null)
@@ -199,6 +199,25 @@ const designType = ref<Nullable<SelectOption>>(null)
 const additionalOption = ref<Nullable<SelectOption>>(null)
 
 const isContactDialogShown = ref(false);
+
+function itemPrice(item: Nullable<SelectOption>){
+  return item?.price ?? 0
+}
+
+const price = computed(()=>{
+  const priceItems:Array<Ref<Nullable<SelectOption>>> = [
+    siteType,
+    cmsType,
+    topic,
+    designType,
+    additionalOption
+  ]
+  let totalPrice = 0
+  for(let item of priceItems){
+    totalPrice += itemPrice(item.value)
+  }
+  return totalPrice
+})
 
 function closeContactDialog(){
   console.log('close in calculator')

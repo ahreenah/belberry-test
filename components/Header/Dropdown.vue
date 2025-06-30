@@ -2,6 +2,9 @@
   <HeadlessMenu class="menu" as="div" v-slot="{ open }">
     <HeadlessMenuButton class="header-link">
       {{title}}
+      <span class="notifications" v-if="notifications">
+        {{notifications}}
+      </span>
       <Icon name="belberry:chevron-down" mode="svg" size="25px" :class="{open}" class="menu-icon"/> 
     </HeadlessMenuButton>
     <HeadlessMenuItems class="items">
